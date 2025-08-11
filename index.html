@@ -150,12 +150,29 @@
                         <button onclick="prevStep(3)" class="bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-400 transition-colors">Back</button>
                         <button onclick="restart()" class="ml-2 bg-gray-200 text-gray-700 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors">Start Again</button>
                     </div>
-                    <button onclick="generateResult()" class="bg-ght-red text-white font-bold py-3 px-6 rounded-lg hover:bg-ght-red-dark transition-colors">See Result</button>
+                    <button onclick="calculateResult()" class="bg-ght-red text-white font-bold py-3 px-6 rounded-lg hover:bg-ght-red-dark transition-colors">See Result</button>
                 </div>
             </div>
             
-            <!-- Step 5: Coercive Control Consideration -->
+            <!-- Step 5: Coercive Control Check -->
             <div id="step-5" class="step-container">
+                <h2 class="text-2xl font-semibold mb-4 text-ght-red">Step 4: Coercive Control Check</h2>
+                <p class="mb-4 text-gray-600">Even if someone appears to have capacity, their decision might be influenced by coercion or control from another person. It is vital to consider this possibility as part of your safeguarding responsibilities.</p>
+                <p class="mb-6 font-semibold text-lg">Do you have any concerns about the impact of coercive control on this person's decision-making?</p>
+                <div class="flex justify-center gap-4">
+                     <button onclick="nextStep(6)" class="bg-orange-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-orange-600 transition-colors">Yes, I have concerns</button>
+                     <button onclick="showResult()" class="bg-gray-300 text-gray-800 font-bold py-3 px-8 rounded-lg hover:bg-gray-400 transition-colors">No, I have no concerns</button>
+                </div>
+                 <div class="mt-8 flex justify-between items-center">
+                    <div>
+                        <button onclick="prevStep(4)" class="bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-400 transition-colors">Back</button>
+                        <button onclick="restart()" class="ml-2 bg-gray-200 text-gray-700 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors">Start Again</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Coercive Control Explainer -->
+            <div id="step-6" class="step-container">
                 <h2 class="text-2xl font-semibold mb-4 text-orange-700">Important Consideration: Coercive Control</h2>
                 <div class="p-4 bg-orange-50 rounded-lg border border-orange-200">
                     <p class="mb-4 text-gray-700">Coercive control can significantly impact a person's ability to make a decision, even if they appear to have capacity. The tactics used by perpetrators (e.g., intimidation, isolation, threats) can limit a person's ability to make independent decisions.</p>
@@ -169,15 +186,15 @@
                 </div>
                 <div class="mt-8 flex justify-between items-center">
                     <div>
-                        <button onclick="prevStep(4)" class="bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-400 transition-colors">Back to Assessment</button>
+                        <button onclick="prevStep(5)" class="bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-400 transition-colors">Back</button>
                         <button onclick="restart()" class="ml-2 bg-gray-200 text-gray-700 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors">Start Again</button>
                     </div>
-                     <button onclick="nextStep(6)" class="bg-ght-red text-white font-bold py-3 px-6 rounded-lg hover:bg-ght-red-dark transition-colors">Continue to Result</button>
+                     <button onclick="showResult()" class="bg-ght-red text-white font-bold py-3 px-6 rounded-lg hover:bg-ght-red-dark transition-colors">Continue to Result</button>
                 </div>
             </div>
 
-            <!-- Step 6: Result -->
-            <div id="step-6" class="step-container">
+            <!-- Step 7: Result -->
+            <div id="step-7" class="step-container">
                 <h2 class="text-2xl font-semibold mb-4 text-ght-red">Assessment Outcome</h2>
                 <div id="result-content" class="p-6 bg-gray-100 rounded-lg"></div>
                 <div class="mt-8 text-center">
@@ -195,15 +212,7 @@
     <script>
         let currentStep = 1;
         const assessment = {};
-
-        // Custom modal to replace confirm()
-        function showCoerciveControlCheck() {
-            // This is a simplified stand-in for a proper modal.
-            // In a real app, you would create a modal overlay here.
-            const userIsConcerned = window.prompt("Do you have any concerns about the impact of coercive control on this person's decision-making? (yes/no)");
-            return userIsConcerned && userIsConcerned.toLowerCase().trim() === 'yes';
-        }
-
+        let resultContentHtml = '';
 
         function showStep(step) {
             document.querySelectorAll('.step-container').forEach(container => {
@@ -232,17 +241,16 @@
             event.currentTarget.classList.add('selected');
         }
         
-        function generateResult() {
+        function calculateResult() {
             const functionalFail = assessment.q1 === 'no' || assessment.q2 === 'no' || assessment.q3 === 'no' || assessment.q4 === 'no';
             const diagnosticPass = assessment.q5 === 'yes';
             const diagnosticFail = assessment.q5 === 'no';
 
-            let resultContent = '';
             const decisionText = document.getElementById('specificDecision').value || "the specified decision";
 
             if (functionalFail && diagnosticPass) {
                 // Causative Nexus is met
-                resultContent = `
+                resultContentHtml = `
                     <h3 class="text-xl font-bold text-ght-red mb-3">Outcome: Lacks Capacity</h3>
                     <p class="mb-4">The assessment indicates that the person likely lacks the mental capacity to make a decision about <strong>${decisionText}</strong> at this time.</p>
                     <p class="mb-2"><strong>Reasoning (<a href="https://mentalcapacitytoolkit.co.uk/3/the-causative-nexus" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Causative Nexus</a>):</strong></p>
@@ -259,7 +267,7 @@
                     </ul>
                 `;
             } else if (diagnosticFail) {
-                 resultContent = `
+                 resultContentHtml = `
                     <h3 class="text-xl font-bold text-green-700 mb-3">Outcome: Assumed to Have Capacity</h3>
                     <p class="mb-4">The assessment indicates that the person should be assumed to have capacity to make a decision about <strong>${decisionText}</strong>.</p>
                     <p class="mb-2"><strong>Reasoning:</strong></p>
@@ -273,7 +281,7 @@
                     </ul>
                 `;
             } else {
-                 resultContent = `
+                 resultContentHtml = `
                     <h3 class="text-xl font-bold text-green-700 mb-3">Outcome: Assumed to Have Capacity</h3>
                     <p class="mb-4">The assessment indicates that the person should be assumed to have capacity to make a decision about <strong>${decisionText}</strong>.</p>
                     <p class="mb-2"><strong>Reasoning:</strong></p>
@@ -288,15 +296,12 @@
                 `;
             }
             
-            // I'm replacing the confirm() dialog with a prompt for this demonstration,
-            // as confirm() is blocked. A proper modal would be the best practice.
-            if (showCoerciveControlCheck()) {
-                 nextStep(5); // Go to coercive control page first
-                 document.getElementById('result-content').innerHTML = resultContent;
-            } else {
-                 document.getElementById('result-content').innerHTML = resultContent;
-                 nextStep(6); // Go directly to results
-            }
+            nextStep(5); // Move to the coercive control check page
+        }
+
+        function showResult() {
+            document.getElementById('result-content').innerHTML = resultContentHtml;
+            nextStep(7);
         }
         
         function restart() {
