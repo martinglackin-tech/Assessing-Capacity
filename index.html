@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+           <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --ght-red: #DD0031;
+            --ght-red-dark: #C3002B;
+            --ght-red-light-bg: #FEE7EC;
+            --ght-red-light-border: #FDCAD7;
+        }
         body {
             font-family: 'Inter', sans-serif;
         }
@@ -25,58 +31,69 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
         .option-card.selected {
-            border-color: #dc2626; /* red-600 */
-            background-color: #fee2e2; /* red-100 */
+            border-color: var(--ght-red);
+            background-color: var(--ght-red-light-bg);
         }
+        .text-ght-red { color: var(--ght-red); }
+        .bg-ght-red { background-color: var(--ght-red); }
+        .hover\:bg-ght-red-dark:hover { background-color: var(--ght-red-dark); }
+        .bg-ght-red-light { background-color: var(--ght-red-light-bg); }
+        .border-ght-red-light { border-color: var(--ght-red-light-border); }
+        .focus\:ring-ght-red:focus {
+            --tw-ring-opacity: 1;
+            --tw-ring-color: var(--ght-red);
+            box-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+        }
+        .focus\:border-ght-red:focus { border-color: var(--ght-red); }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
     <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-4xl">
-        <header class="relative text-center mb-8 border-b pb-4">
-             <div class="absolute top-0 left-0">
-                <!-- George House Trust Logo -->
-                <img src="3-ght-logo.png" alt="George House Trust Logo" class="h-12 sm:h-14" onerror="this.onerror=null;this.src='https://placehold.co/200x50/ef4444/ffffff?text=GHT+Logo';">
+        <header class="flex items-center gap-4 sm:gap-6 mb-8 border-b pb-6">
+            <!-- George House Trust Logo -->
+            <img src="3-ght-logo.png" alt="George House Trust Logo" class="h-12 sm:h-16 flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/200x50/DD0031/ffffff?text=GHT+Logo';">
+            <div>
+                <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Mental Capacity Assessment Tool</h1>
+                <p class="mt-1 text-base sm:text-lg text-gray-600">An interactive tool to support staff in assessing mental capacity.</p>
             </div>
-            <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 pt-4">Mental Capacity Assessment Tool</h1>
-            <p class="mt-2 text-lg text-gray-600">An interactive tool to support staff in assessing mental capacity.</p>
         </header>
 
         <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
 
             <!-- Step 1: Introduction -->
             <div id="step-1" class="step-container active">
-                <h2 class="text-2xl font-semibold mb-4 text-red-700">The 5 Principles of the Mental Capacity Act</h2>
+                <h2 class="text-2xl font-semibold mb-4 text-ght-red">The 5 Principles of the Mental Capacity Act</h2>
                 <p class="mb-6 text-gray-600">Before you begin, remember the five statutory principles that are the foundation of the Mental Capacity Act 2005. They are designed to protect and empower individuals who may lack capacity.</p>
                 <div class="space-y-4">
-                    <div class="p-4 bg-red-50 rounded-lg border border-red-200"><strong>1. Start by assuming they CAN make the decision:</strong> Always begin by believing that an adult can make their own choice, unless there's clear evidence to show they can't.</div>
-                    <div class="p-4 bg-red-50 rounded-lg border border-red-200"><strong>2. Help them to make their own decision:</strong> Before you decide someone can't make a decision, you must give them all the support they need. This could mean using simple language, pictures, or giving them more time.</div>
-                    <div class="p-4 bg-red-50 rounded-lg border border-red-200"><strong>3. It's okay to make 'unwise' choices:</strong> Everyone has the right to make a decision that others might think is strange or risky. This doesn't automatically mean they can't make a decision.</div>
-                    <div class="p-4 bg-red-50 rounded-lg border border-red-200"><strong>4. Act in their best interests:</strong> If you have to make a decision for someone who can't, it must be what's best for them, not what's easiest for you.</div>
-                    <div class="p-4 bg-red-50 rounded-lg border border-red-200"><strong>5. Choose the option with the most freedom:</strong> If you have to act for someone, you must choose the option that interferes the least with their freedom and rights.</div>
+                    <div class="p-4 bg-ght-red-light rounded-lg border border-ght-red-light"><strong>1. Start by assuming they CAN make the decision:</strong> Always begin by believing that an adult can make their own choice, unless there's clear evidence to show they can't.</div>
+                    <div class="p-4 bg-ght-red-light rounded-lg border border-ght-red-light"><strong>2. Help them to make their own decision:</strong> Before you decide someone can't make a decision, you must give them all the support they need. This could mean using simple language, pictures, or giving them more time.</div>
+                    <div class="p-4 bg-ght-red-light rounded-lg border border-ght-red-light"><strong>3. It's okay to make 'unwise' choices:</strong> Everyone has the right to make a decision that others might think is strange or risky. This doesn't automatically mean they can't make a decision.</div>
+                    <div class="p-4 bg-ght-red-light rounded-lg border border-ght-red-light"><strong>4. Act in their best interests:</strong> If you have to make a decision for someone who can't, it must be what's best for them, not what's easiest for you.</div>
+                    <div class="p-4 bg-ght-red-light rounded-lg border border-ght-red-light"><strong>5. Choose the option with the most freedom:</strong> If you have to act for someone, you must choose the option that interferes the least with their freedom and rights.</div>
                 </div>
                 <div class="mt-8 text-center">
-                    <button onclick="nextStep(2)" class="bg-red-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-700 transition-colors">Start Assessment</button>
+                    <button onclick="nextStep(2)" class="bg-ght-red text-white font-bold py-3 px-6 rounded-lg hover:bg-ght-red-dark transition-colors">Start Assessment</button>
                 </div>
             </div>
 
             <!-- Step 2: The Specific Decision -->
             <div id="step-2" class="step-container">
-                <h2 class="text-2xl font-semibold mb-4 text-red-700">Step 1: The Specific Decision</h2>
+                <h2 class="text-2xl font-semibold mb-4 text-ght-red">Step 1: The Specific Decision</h2>
                 <p class="mb-6 text-gray-600">Capacity is decision-specific and time-specific. What is the exact decision that needs to be made right now?</p>
-                <textarea id="specificDecision" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500" rows="4" placeholder="e.g., To consent to a specific medical treatment, to manage their own finances, to decide where to live..."></textarea>
+                <textarea id="specificDecision" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ght-red focus:border-ght-red" rows="4" placeholder="e.g., To consent to a specific medical treatment, to manage their own finances, to decide where to live..."></textarea>
                 <div class="mt-8 flex justify-between items-center">
                     <div>
                         <button onclick="prevStep(1)" class="bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-400 transition-colors">Back</button>
                         <button onclick="restart()" class="ml-2 bg-gray-200 text-gray-700 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors">Start Again</button>
                     </div>
-                    <button onclick="nextStep(3)" class="bg-red-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-700 transition-colors">Next</button>
+                    <button onclick="nextStep(3)" class="bg-ght-red text-white font-bold py-3 px-6 rounded-lg hover:bg-ght-red-dark transition-colors">Next</button>
                 </div>
             </div>
 
             <!-- Step 3: Stage 1 - The Functional Test -->
             <div id="step-3" class="step-container">
-                <h2 class="text-2xl font-semibold mb-4 text-red-700">Step 2: The Functional Test</h2>
+                <h2 class="text-2xl font-semibold mb-4 text-ght-red">Step 2: The Functional Test</h2>
                 <p class="mb-6 text-gray-600">To lack capacity, a person must be unable to do one or more of the following. Consider the person's ability in relation to the specific decision you identified.</p>
                 
                 <div class="space-y-6">
@@ -115,13 +132,13 @@
                         <button onclick="prevStep(2)" class="bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-400 transition-colors">Back</button>
                         <button onclick="restart()" class="ml-2 bg-gray-200 text-gray-700 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors">Start Again</button>
                     </div>
-                    <button onclick="nextStep(4)" class="bg-red-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-700 transition-colors">Next</button>
+                    <button onclick="nextStep(4)" class="bg-ght-red text-white font-bold py-3 px-6 rounded-lg hover:bg-ght-red-dark transition-colors">Next</button>
                 </div>
             </div>
 
             <!-- Step 4: Stage 2 - The Diagnostic Test -->
             <div id="step-4" class="step-container">
-                <h2 class="text-2xl font-semibold mb-4 text-red-700">Step 3: The Diagnostic Test</h2>
+                <h2 class="text-2xl font-semibold mb-4 text-ght-red">Step 3: The Diagnostic Test</h2>
                 <p class="mb-4 text-gray-600">Is the person's inability to make the decision caused by an impairment of, or a disturbance in the functioning of, the mind or brain? (e.g., dementia, learning disability, brain injury, mental health condition, effects of drugs/alcohol).</p>
                 <p class="mb-6 text-gray-600">This can be a permanent or temporary condition.</p>
                 <div class="flex space-x-4">
@@ -133,7 +150,7 @@
                         <button onclick="prevStep(3)" class="bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-400 transition-colors">Back</button>
                         <button onclick="restart()" class="ml-2 bg-gray-200 text-gray-700 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors">Start Again</button>
                     </div>
-                    <button onclick="generateResult()" class="bg-red-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-700 transition-colors">See Result</button>
+                    <button onclick="generateResult()" class="bg-ght-red text-white font-bold py-3 px-6 rounded-lg hover:bg-ght-red-dark transition-colors">See Result</button>
                 </div>
             </div>
             
@@ -155,16 +172,16 @@
                         <button onclick="prevStep(4)" class="bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-400 transition-colors">Back to Assessment</button>
                         <button onclick="restart()" class="ml-2 bg-gray-200 text-gray-700 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors">Start Again</button>
                     </div>
-                     <button onclick="nextStep(6)" class="bg-red-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-700 transition-colors">Continue to Result</button>
+                     <button onclick="nextStep(6)" class="bg-ght-red text-white font-bold py-3 px-6 rounded-lg hover:bg-ght-red-dark transition-colors">Continue to Result</button>
                 </div>
             </div>
 
             <!-- Step 6: Result -->
             <div id="step-6" class="step-container">
-                <h2 class="text-2xl font-semibold mb-4 text-red-700">Assessment Outcome</h2>
+                <h2 class="text-2xl font-semibold mb-4 text-ght-red">Assessment Outcome</h2>
                 <div id="result-content" class="p-6 bg-gray-100 rounded-lg"></div>
                 <div class="mt-8 text-center">
-                    <button onclick="restart()" class="bg-red-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-700 transition-colors">Start New Assessment</button>
+                    <button onclick="restart()" class="bg-ght-red text-white font-bold py-3 px-6 rounded-lg hover:bg-ght-red-dark transition-colors">Start New Assessment</button>
                 </div>
             </div>
         </div>
@@ -226,7 +243,7 @@
             if (functionalFail && diagnosticPass) {
                 // Causative Nexus is met
                 resultContent = `
-                    <h3 class="text-xl font-bold text-red-700 mb-3">Outcome: Lacks Capacity</h3>
+                    <h3 class="text-xl font-bold text-ght-red mb-3">Outcome: Lacks Capacity</h3>
                     <p class="mb-4">The assessment indicates that the person likely lacks the mental capacity to make a decision about <strong>${decisionText}</strong> at this time.</p>
                     <p class="mb-2"><strong>Reasoning (Causative Nexus):</strong></p>
                     <ul class="list-disc list-inside mb-4 space-y-1">
